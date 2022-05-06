@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlignTheMap</title>
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="modules/leaflet/leaflet.css">
+</head>
+<body>
+    <header class="head">
+        <h1>AlignTheMap</h1>
+    </header>
+    <div class="zone">
+        <div class="map" id="map-zone">
+            <div id="map"></div>
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="menu">
+            <button class="menu__item menu__button" title="Point O" id="select-point-o">
+                <div class="letter-icon">O</div>
+            </button>
+            <button class="menu__item menu__button" title="Point A" id="select-point-a">
+                <div class="letter-icon">A</div>
+            </button>
+            <button class="menu__item menu__button" title="Point B" id="select-point-b">
+                <div class="letter-icon">B</div>
+            </button>
+            <div class="hr"></div>
+            <button class="menu__item menu__button" title="Importer polygones" id="io-import-poly">
+                <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M30 40V37H37V11H30V8H40V40ZM8 40V8H18V11H11V37H18V40Z"/></svg>
+            </button>
+            <button class="menu__item menu__button" title="Importer GeoJSON" id="io-import-geo">
+                <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M22.5 32.35V13.8L16.5 19.8L14.35 17.65L24 8L33.65 17.65L31.5 19.8L25.5 13.8V32.35ZM11 40Q9.8 40 8.9 39.1Q8 38.2 8 37V29.85H11V37Q11 37 11 37Q11 37 11 37H37Q37 37 37 37Q37 37 37 37V29.85H40V37Q40 38.2 39.1 39.1Q38.2 40 37 40Z"/></svg>
+            </button>
+            <button class="menu__item menu__button" title="Exporter GeoJSON" id="io-export-geo">
+                <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M24 32.35 14.35 22.7 16.5 20.55 22.5 26.55V8H25.5V26.55L31.5 20.55L33.65 22.7ZM11 40Q9.8 40 8.9 39.1Q8 38.2 8 37V29.85H11V37Q11 37 11 37Q11 37 11 37H37Q37 37 37 37Q37 37 37 37V29.85H40V37Q40 38.2 39.1 39.1Q38.2 40 37 40Z"/></svg>
+            </button>
+        </div>
+        <div class="menu menu--horizontal" style="grid-column-end: span 2;">
+            <label class="menu__item menu__input">
+                <div class="menu__input__label">Latitude</div>
+                <input type="number" id="loc-lat" class="menu__input__box" step="0.001">
+            </label>
+            <label class="menu__item menu__input">
+                <div class="menu__input__label">Longitude</div>
+                <input type="number" id="loc-lng" class="menu__input__box" step="0.001">
+            </label>
+            <label class="menu__item menu__input menu__input--small">
+                <div class="menu__input__label">Zoom</div>
+                <input type="number" id="loc-zoom" class="menu__input__box">
+            </label>
+        </div>
+    </div>
+    <footer class="foot">
+        <p>TotoShampoin</p>
+        <p>Urbanature</p>
+    </footer>
+    <script src="modules/jquery-3.6.0.slim.min.js"></script>
+    <script src="modules/leaflet/leaflet.js"></script>
+    <script src="src/main.js" type="module"></script>
+</body>
+</html>
