@@ -2,6 +2,8 @@
 
 A mini-app to align polygons on the World Map. Polygons might be generated using [GreenMap](https://github.com/TotoShampoin/greenmap)
 
+[You can test it here](https://totoshampoin.github.io/AlignTheMap/)
+
 ## How to use
 
 - Locate the area you want to map polygons on (with the inputs below)
