@@ -3,6 +3,8 @@
         "include": [
             "jquery",
             "leaflet",
+            "jszip",
+            "jszip-utils",
         ]
     }
 }

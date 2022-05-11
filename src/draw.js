@@ -1,8 +1,15 @@
-/** @type {HTMLCanvasElement} */ const canvas = $("#canvas")[0];
-/** @type {CanvasRenderingContext2D} */ const ctx = canvas.getContext("2d");
+/** @type {HTMLCanvasElement} */ export const canvas = $("#canvas")[0];
+/** @type {CanvasRenderingContext2D} */ export const ctx = canvas.getContext("2d");
 
 canvas.width = canvas.clientWidth;
 canvas.height = canvas.clientHeight;
+$(window).on("resize", () => {
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+    ctx.resetTransform();
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+
+});
 ctx.translate(canvas.width / 2, canvas.height / 2);
 
 export const clear = () => {
@@ -80,13 +87,13 @@ export const text = (x, y, text, color = "black", font = "12px Arial") => {
     ctx.fillText(text, x, y);
 }
 
-export const image = (x, y, image) => {
-    ctx.drawImage(image, x, y);
+export const image = (image, x, y, w, h) => {
+    ctx.drawImage(image, x, y, w, h);
 }
 
 /**
  * 
- * @param {[number,number,number,number]} matrix 
+ * @param {[number,number,number,number,number,number]} matrix 
  * @param {() => void} callback 
  */
 export const applyMatrix = (matrix, callback = () => {}) => {
@@ -94,4 +101,10 @@ export const applyMatrix = (matrix, callback = () => {}) => {
     ctx.transform(...matrix);
     callback();
     ctx.restore();
+}
+
+export const applyOpacity = (opacity, callback = () => {}) => {
+    ctx.globalAlpha = opacity;
+    callback();
+    ctx.globalAlpha = 1;
 }
