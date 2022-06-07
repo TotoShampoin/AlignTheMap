@@ -130,7 +130,18 @@ IO.handlers.onGeoPreview = (on = false) => {
     }
 }
 IO.handlers.onGeoExport = () => {
-    const geo = getGeoFromPolies(data.polygons);
+    let geo;
+    let max_x = data.width;
+    let max_y = data.height;
+    if(data.polygons.length > 0) {
+        const pol = data.polygons.map(polygon => applyMatrix(polygon, max_x, max_y));
+        geo = getGeoFromPolies(pol);
+    } else {
+        geo = {
+            type: "FeatureCollection",
+            features: []
+        };
+    }
     const blob = new Blob([JSON.stringify(geo)], {type: "application/json"});
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");

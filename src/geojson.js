@@ -15,6 +15,20 @@ export const getLatLngFromVector = (vector) => {
     return {lat, lng};
 }
 
+export const getGeoLatLngFromVector = (vector) => {
+    const x = vector[0];
+    const y = vector[1];
+    const bounds = L_map.getBounds();
+    const center = bounds.getCenter();
+    const north  = bounds.getNorth();
+    const south  = bounds.getSouth();
+    const east   = bounds.getEast();
+    const west   = bounds.getWest();
+    const lat = center.lat + y / canvas.height * (south - north);
+    const lng = center.lng + x / canvas.width * (east - west);
+    return [lng, lat];
+}
+
 export const getVectorFromLatLng = (lat, lng) => {
     const bounds = L_map.getBounds();
     const center = bounds.getCenter();
@@ -32,9 +46,11 @@ export const getGeoFromPolies = (polygons) => {
     const geojson = {
         type: "MultiPolygon",
         coordinates: polygons.map(polygon => {
-            return polygon.map(coords => {
-                return getVectorFromLatLng(coords[0], coords[1]);
+            const pol = polygon.map(coords => {
+                return getGeoLatLngFromVector(coords);
             });
+            pol.push(pol[0]);
+            return [pol];
         })
     }
     return geojson;

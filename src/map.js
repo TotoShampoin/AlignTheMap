@@ -26,7 +26,11 @@ export const setCoords = (lat, lng, zoom = 12) => {
  */
 export const placePolygons = (polygons) => {
     if(preview && L_map.hasLayer(preview)) L_map.removeLayer(preview);
-    const latlng_pol = polygons.map((polygon) => polygon.map((coords) => getLatLngFromVector(coords)));
+    const latlng_pol = polygons.map((polygon) => {
+        const pol = polygon.map((coords) => getLatLngFromVector(coords));
+        pol.push(pol[0]);
+        return [pol];
+    });
     if(latlng_pol.length > 0) {
         preview = L.polygon(latlng_pol, {
             color: "#ff0000",
